@@ -3,12 +3,15 @@ package com.upwordly.slillstream.Activities;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +21,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.card.MaterialCardView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
@@ -36,6 +41,7 @@ public class paymentActivity extends AppCompatActivity {
     private Button btnConfirm;
     FirebaseFirestore db;
     FirebaseAuth auth;
+    MaterialCardView methodBkash, methodNagad, methodBank;
 
 
     @Override
@@ -58,6 +64,12 @@ public class paymentActivity extends AppCompatActivity {
         etTrxId = findViewById(R.id.etTrxId);
         btnConfirm = findViewById(R.id.btnConfirm);
         price = findViewById(R.id.price);
+        methodBkash = findViewById(R.id.methodBkash);
+        methodNagad = findViewById(R.id.methodNagad);
+        methodBank = findViewById(R.id.methodBank);
+
+
+
         price.setText("BDT : " + coursePrice);
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
@@ -94,6 +106,33 @@ public class paymentActivity extends AppCompatActivity {
                     }, 3000);}
             }
         });
+
+        MaterialCardView[] cards = {methodBkash, methodNagad,methodBank};
+
+        for (MaterialCardView card : cards) {
+            card.setOnClickListener(v -> {
+
+                for (MaterialCardView c : cards) {
+                    c.setStrokeWidth(0);
+                    LinearLayout layout = (LinearLayout) c.getChildAt(0);
+                    TextView tv = (TextView) layout.getChildAt(1);
+                    tv.setTypeface(null, Typeface.NORMAL);
+                }
+                card.setStrokeWidth(dpToPx(2));
+                card.setStrokeColor(Color.parseColor("#D12082"));
+
+
+                LinearLayout selectedLayout = (LinearLayout) card.getChildAt(0);
+                TextView selectedTv = (TextView) selectedLayout.getChildAt(1);
+                selectedTv.setTypeface(null, Typeface.BOLD);
+
+                String selectedMethod = selectedTv.getText().toString();
+            });
+        }
+    }
+    private int dpToPx(int dp) {
+        float density = getResources().getDisplayMetrics().density;
+        return Math.round((float) dp * density);
     }
 
     void paymentVerified(String trxId, int CourseID) {
@@ -117,8 +156,6 @@ public class paymentActivity extends AppCompatActivity {
                     }
                 });
     }
-
-    // ডাটা সেভ করার জন্য আলাদা মেথড
     private void savePaymentData(String trxId, String uid, int CourseID) {
         Map<String, Object> paymentData = new HashMap<>();
         paymentData.put("trxId", trxId);
@@ -137,9 +174,18 @@ public class paymentActivity extends AppCompatActivity {
                     Log.e("Firestore", "Error: " + e.getMessage());
                 });
     }
+    void loadpaymenData(){
+        db.collection("paymentSetting")
+                .document("paymentSetting")
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
 
+                    }
+                });
 
-
+    }
 
 
 
