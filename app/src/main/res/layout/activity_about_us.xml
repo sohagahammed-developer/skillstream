@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="-20dp"
+    android:background="@drawable/backround_bg"
+    >
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/recyclerView"/>
+
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:id="@+id/card1"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:cardCornerRadius="20dp"-->
+<!--        app:cardElevation="6dp"-->
+<!--        android:layout_marginTop="38dp"-->
+<!--        android:layout_marginStart="5dp"-->
+<!--        android:layout_marginEnd="5dp"-->
+<!--        android:background="@color/Text_Color">-->
+
+<!--        <RelativeLayout-->
+<!--            android:orientation="vertical"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+
+<!--            &lt;!&ndash; Course Image &ndash;&gt;-->
+
+<!--            &lt;!&ndash; Course Title &ndash;&gt;-->
+<!--            <ImageView-->
+<!--                android:id="@+id/ImageView"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="180dp"-->
+<!--                android:background="@drawable/gradient_overlay"-->
+<!--                android:contentDescription="Course Image"-->
+<!--                android:scaleType="centerCrop"-->
+<!--                android:src="@drawable/flutter" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/title"-->
+<!--                android:layout_below="@id/ImageView"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="App Development with Flutter"-->
+<!--                android:textColor="@color/DarkBlue"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textSize="18sp"-->
+<!--                android:paddingStart="16dp"-->
+<!--                android:paddingEnd="16dp"-->
+<!--                android:paddingTop="12dp"-->
+<!--                android:paddingBottom="4dp"-->
+<!--                android:maxLines="2"-->
+<!--                android:ellipsize="end"/>-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/courseStartDate"-->
+<!--                android:layout_below="@id/title"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="July 15, 2025"-->
+<!--                android:textColor="@color/DarkBlue"-->
+<!--                android:textSize="16sp"-->
+<!--                android:paddingStart="16dp"-->
+<!--                android:paddingEnd="16dp"-->
+<!--                android:paddingTop="5dp"-->
+<!--                android:paddingBottom="4dp"-->
+<!--                android:maxLines="2"-->
+<!--                android:ellipsize="end"/>-->
+<!--            &lt;!&ndash; Price Highlight &ndash;&gt;-->
+<!--            <TextView-->
+<!--                android:id="@+id/coursePrice"-->
+<!--                android:layout_below="@id/title"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Go to Course"-->
+<!--                android:layout_marginEnd="15dp"-->
+<!--                android:textColor="@color/Text_Color"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textSize="16sp"-->
+<!--                android:padding="8dp"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginBottom="12dp"-->
+<!--                android:background="@drawable/price_bg"-->
+<!--                android:layout_gravity="start"/>-->
+
+<!--        </RelativeLayout>-->
+
+<!--    </androidx.cardview.widget.CardView>-->
+
+
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:id="@+id/card2"-->
+<!--        android:layout_below="@id/card1"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:cardCornerRadius="20dp"-->
+<!--        app:cardElevation="6dp"-->
+<!--        android:layout_marginTop="28dp"-->
+<!--        android:layout_marginStart="5dp"-->
+<!--        android:layout_marginEnd="5dp"-->
+<!--        android:background="@color/Text_Color">-->
+
+<!--        <RelativeLayout-->
+<!--            android:orientation="vertical"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+
+<!--            &lt;!&ndash; Course Image &ndash;&gt;-->
+
+<!--            &lt;!&ndash; Course Title &ndash;&gt;-->
+<!--            <ImageView-->
+<!--                android:id="@+id/Image"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="180dp"-->
+<!--                android:background="@drawable/gradient_overlay"-->
+<!--                android:contentDescription="Course Image"-->
+<!--                android:scaleType="centerCrop"-->
+<!--                android:src="@drawable/ui_ux" />-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/t1"-->
+<!--                android:layout_below="@id/Image"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="UI/UX Design Masterclass"-->
+<!--                android:textColor="@color/DarkBlue"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textSize="18sp"-->
+<!--                android:paddingStart="16dp"-->
+<!--                android:paddingEnd="16dp"-->
+<!--                android:paddingTop="12dp"-->
+<!--                android:paddingBottom="4dp"-->
+<!--                android:maxLines="2"-->
+<!--                android:ellipsize="end"/>-->
+
+<!--            <TextView-->
+<!--                android:id="@+id/tartDate"-->
+<!--                android:layout_below="@id/t1"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="December 1, 2025"-->
+<!--                android:textColor="@color/DarkBlue"-->
+<!--                android:textSize="16sp"-->
+<!--                android:paddingStart="16dp"-->
+<!--                android:paddingEnd="16dp"-->
+<!--                android:paddingTop="5dp"-->
+<!--                android:paddingBottom="4dp"-->
+<!--                android:maxLines="2"-->
+<!--                android:ellipsize="end"/>-->
+<!--            &lt;!&ndash; Price Highlight &ndash;&gt;-->
+<!--            <TextView-->
+<!--                android:id="@+id/course"-->
+<!--                android:layout_below="@id/t1"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Go to Course"-->
+<!--                android:layout_marginEnd="15dp"-->
+<!--                android:textColor="@color/Text_Color"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textSize="16sp"-->
+<!--                android:padding="8dp"-->
+<!--                android:layout_marginStart="16dp"-->
+<!--                android:layout_marginBottom="12dp"-->
+<!--                android:background="@drawable/price_bg"-->
+<!--                android:layout_gravity="start"/>-->
+
+<!--        </RelativeLayout>-->
+
+<!--    </androidx.cardview.widget.CardView>-->
+</RelativeLayout>

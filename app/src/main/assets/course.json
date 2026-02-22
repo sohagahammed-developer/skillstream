@@ -1,0 +1,153 @@
+{
+  "courses": [
+    {
+      "id": 1,
+      "course_name": "App Development with Flutter",
+      "course_title": "Build Beautiful Cross-Platform Apps with Flutter",
+      "course_price": 12500,
+      "course_start_date": "July 15, 2025",
+      "image": "flutter",
+      "learning_technology": [
+        "Flutter SDK",
+        "Dart",
+        "Firebase",
+        "Android Studio",
+        "Visual Studio Code",
+        "GitHub"
+      ],
+      "guidelines": [
+        "Participants must have access to a computer (Windows/Linux/Mac) with internet connectivity.",
+        "No prior experience required — this course starts from the basics.",
+        "Students must commit at least 6–8 hours per week for study and practice.",
+        "Assignments will be given every week and must be submitted on time.",
+        "Respect peer feedback and collaborate during group sessions.",
+        "A final capstone project must be completed to earn the certificate."
+      ]
+    },
+    {
+      "id": 2,
+      "course_name": "Web Development",
+      "course_title": "Full-Stack Web Development – From HTML to Deployment",
+      "course_price": 10000,
+      "course_start_date": "August 5, 2025",
+      "image": "web",
+      "learning_technology": [
+        "HTML5",
+        "CSS3",
+        "JavaScript",
+        "React",
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "GitHub",
+        "VS Code"
+      ],
+      "guidelines": [
+        "No prior experience required — this course starts from the basics.",
+        "Students must commit at least 6–8 hours per week for study and practice.",
+        "All sessions will be recorded and shared for later viewing.",
+        "Weekly quizzes and coding tasks are part of the learning path.",
+        "Final portfolio website must be submitted for certification.",
+        "Collaboration and respectful behavior in the student community are mandatory."
+      ]
+    },
+    {
+      "id": 3,
+      "course_name": "Digital Marketing Masterclass",
+      "course_title": "Complete Digital Marketing Course – SEO, Social Media & Ads Mastery",
+      "course_price": 8500,
+      "course_start_date": "September 1, 2025",
+      "image": "markating",
+      "learning_technology": [
+        "Google Ads",
+        "Facebook Business Suite",
+        "Ahrefs",
+        "SEMrush",
+        "Google Analytics",
+        "Canva",
+        "Mailchimp"
+      ],
+      "guidelines": [
+        "No prior marketing experience needed – beginners are welcome.",
+        "Students must create a Gmail account for accessing Google tools.",
+        "Weekly practical tasks must be submitted to continue to the next module.",
+        "A laptop or desktop is required for effective learning.",
+        "Final project includes creating a digital marketing campaign for a real or mock business.",
+        "Certification will be provided only upon full completion and project submission."
+      ]
+    },
+    {
+      "id": 4,
+      "course_name": "Graphic Design Essentials",
+      "course_title": "Professional Graphic Design Course – From Basics to Branding",
+      "course_price": 7000,
+      "course_start_date": "October 10, 2025",
+      "image": "design",
+      "learning_technology": [
+        "Adobe Photoshop",
+        "Adobe Illustrator",
+        "Canva",
+        "Figma",
+        "CorelDRAW"
+      ],
+      "guidelines": [
+        "No prior design experience is required — course starts from scratch.",
+        "Students must have access to a PC or laptop with design software installed.",
+        "Regular practice and project submission are key to progress.",
+        "Course includes real-world client-based design tasks.",
+        "Final portfolio submission is required for certification.",
+        "Respect creative feedback and participate actively in peer reviews."
+      ]
+    },
+    {
+      "id": 5,
+      "course_name": "UI/UX Design Masterclass",
+      "course_title": "Become a UI/UX Designer – From User Research to Interactive Design",
+      "course_price": 12000,
+      "course_start_date": "December 1, 2025",
+      "image": "ui_ux",
+      "learning_technology": [
+        "Adobe XD",
+        "Figma",
+        "Sketch",
+        "InVision",
+        "Usability Testing",
+        "Wireframing",
+        "Prototyping"
+      ],
+      "guidelines": [
+        "No prior design experience is required — course starts with foundational concepts.",
+        "Participants must have access to a laptop or desktop with design software installed.",
+        "Active participation in design critique sessions and peer feedback is required.",
+        "Weekly design exercises and challenges must be completed to develop practical skills.",
+        "Final project includes creating a complete UI/UX design for a real or mock app/website.",
+        "Students are encouraged to create a portfolio for future job opportunities."
+      ]
+    },
+    {
+      "id": 6,
+      "course_name": "Cyber Security Fundamentals",
+      "course_title": "Master Cyber Security – Protecting Systems and Data from Threats",
+      "course_price": 15000,
+      "course_start_date": "November 5, 2025",
+      "image": "security",
+      "learning_technology": [
+        "Kali Linux",
+        "Wireshark",
+        "Metasploit",
+        "Nessus",
+        "VPNs",
+        "Encryption Tools",
+        "OWASP Top 10"
+      ],
+      "guidelines": [
+        "Basic understanding of computer networks is recommended but not required.",
+        "Participants must have access to a computer with a stable internet connection.",
+        "Ethical hacking tools will be used in a controlled and legal environment.",
+        "Weekly quizzes, assignments, and virtual labs are part of the learning process.",
+        "Final project includes simulating a real-world cyber attack and defense.",
+        "Adherence to ethical guidelines is mandatory."
+      ]
+    }
+  ]
+}

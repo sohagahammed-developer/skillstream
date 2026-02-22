@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F7FA"
+    tools:context=".Activities.CourseDetailsActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/backround_bg"
+            android:orientation="vertical">
+
+            <!-- Hero Image -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="240dp">
+
+                <ImageView
+                    android:id="@+id/courseImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop" />
+
+                <!-- Dark overlay -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#66000000" />
+
+                <TextView
+                    android:id="@+id/courseTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#FFFFFF"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="bottom"
+                    android:padding="16dp" />
+            </FrameLayout>
+
+            <!-- Main Info Card -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:orientation="vertical"
+                android:background="@drawable/card_bg"
+                android:elevation="6dp"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/courseName"
+                    android:textSize="16sp"
+                    android:textColor="@color/Text_Color"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/startDate"
+                    android:textSize="14sp"
+                    android:textColor="@color/Text_Color"
+                    android:layout_marginTop="6dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <!-- Price Badge -->
+                <TextView
+                    android:id="@+id/price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:background="@drawable/price_bg"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="6dp"
+                    android:layout_marginTop="12dp" />
+
+                <Button
+                    android:id="@+id/enrollBtn"
+                    android:text="Enroll Now"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@drawable/btn_gradient"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:layout_marginTop="16dp" />
+
+            </LinearLayout>
+
+            <!-- Learning Technology -->
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="What you will learn"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#0A2540"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp" />
+
+            <LinearLayout
+                android:id="@+id/techContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:orientation="vertical"
+
+                android:background="@drawable/card_bg"
+                android:padding="12dp" />
+
+            <!-- Guidelines -->
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Course Guidelines"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#0A2540"
+                android:layout_marginStart="16dp" />
+
+            <LinearLayout
+                android:id="@+id/guidelineContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:orientation="vertical"
+                android:background="@drawable/card_bg"
+                android:padding="12dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

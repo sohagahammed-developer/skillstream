@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/backround_bg"
+    android:layout_marginTop="-20dp"
+    android:padding="10dp"
+    tools:context=".Fragment.MyCourseFragment">
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:padding="20dp">
+
+            <!-- App Title -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="About Skill Stream"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/Text_Color"
+                android:layout_marginBottom="12dp"/>
+
+            <!-- Card Container -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/backround_bg"
+                android:elevation="16dp"
+                android:padding="18dp">
+
+                <!-- About Text -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text='"Skill Stream" is an app-based platform designed to streamline online learning through a personalized and automated approach. It offers features such as customizable learning paths, auto-generated study materials, real-time progress tracking, and course recommendations based on user preferences via intelligent algorithms.'
+                    android:textSize="15sp"
+                    android:textColor="@color/DarkBlue"
+                    android:lineSpacingExtra="6dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text='These tools empower learners to efficiently achieve their educational goals. The platform also includes study schedule reminders, progress tracking with visual graphs and reports, and interactive quizzes to enhance the learning experience.'
+                    android:textSize="15sp"
+                    android:textColor="@color/DarkBlue"
+                    android:lineSpacingExtra="6dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text='Focused on accessibility and user-friendliness, "Skill Stream" provides a seamless and adaptable experience tailored to individual learning styles and needs.'
+                    android:textSize="15sp"
+                    android:textColor="@color/DarkBlue"
+                    android:lineSpacingExtra="6dp"/>
+
+                <!-- Technology Section -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Technology Stack"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/Text_Color"
+                    android:layout_marginTop="16dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="• React.js for a responsive interface\n• Node.js for robust backend operations\n• MongoDB for scalable data management"
+                    android:textSize="15sp"
+                    android:textColor="@color/DarkBlue"
+                    android:lineSpacingExtra="6dp"/>
+
+                <!-- Future Plan -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Future Enhancements"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/Text_Color"
+                    android:layout_marginTop="16dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="• Live tutoring sessions\n• Collaborative study groups\n• Dedicated mobile application"
+                    android:textSize="15sp"
+                    android:textColor="@color/DarkBlue"
+                    android:lineSpacingExtra="6dp"/>
+
+            </LinearLayout>
+
+            <!-- Footer -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Empowering Learning Through Technology"
+                android:textSize="13sp"
+                android:textStyle="italic"
+                android:textColor="@color/Text_Color"
+                android:layout_marginTop="20dp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

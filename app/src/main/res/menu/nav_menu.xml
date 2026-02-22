@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_home"
+        android:title="Home"
+        android:icon="@drawable/home"
+        />
+
+    <item
+        android:id="@+id/menu_course"
+        android:title="Courses"
+        android:icon="@drawable/couse" />
+
+    <item
+        android:id="@+id/menu_my_course"
+        android:title="About Us"
+        android:icon="@drawable/my_course" />
+
+    <item
+        android:id="@+id/menu_contact"
+        android:title="Contact"
+        android:icon="@drawable/baseline_email_24" />
+
+</menu>

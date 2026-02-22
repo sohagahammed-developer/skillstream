@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backround_bg"
+    android:layout_marginTop="-20dp"
+    tools:context=".Activities.MainActivity">
+
+    <!-- Card Style Container -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="20dp"
+        app:cardCornerRadius="20dp"
+        android:layout_marginTop="20dp"
+        app:cardElevation="6dp"
+        app:cardBackgroundColor="#1E2A38">
+
+        <LinearLayout
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:background="@drawable/backround_bg"
+            android:gravity="center_horizontal">
+
+            <!-- Title -->
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:text="Create Account"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp"
+                android:padding="5dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Join us and start learning"
+                android:textSize="14sp"
+                android:textColor="@color/DarkBlue"
+                android:layout_marginBottom="20dp"/>
+
+            <!-- Name -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textlayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hintTextColor="@color/DarkBlue"
+                android:hint="Full Name">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:id="@+id/name_txt"
+                    app:hintTextColor="@color/DarkBlue"
+                    android:inputType="textNoSuggestions"
+                    android:textColor="@color/DarkBlue"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Email -->
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:hint="Email Address">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:id="@+id/email_txt"
+                    android:inputType="text"
+                    android:textColor="#FFFFFF"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Password -->
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:hint="Password"
+                app:endIconMode="password_toggle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/password_txt"
+                    android:inputType="textPassword"
+
+                    android:textColor="#FFFFFF"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <TextView
+                android:id="@+id/forgot"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_gravity="end"
+                android:text="Forgot password"
+                android:padding="8dp"
+                android:textStyle="bold"
+                android:textColor="#FFB960"/>
+            <!-- Button -->
+            <Button
+                android:id="@+id/btn_action"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Create Account"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:backgroundTint="#FFB960"/>
+
+
+            <!-- Login -->
+            <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_alreadyHave"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:padding="3dp"
+                    android:text="Already have an account ? "
+                    android:textColor="@color/DarkBlue"/>
+
+                <TextView
+                    android:id="@+id/button_authentication"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+
+                    android:text="Login"
+                    android:padding="8dp"
+                    android:textStyle="bold"
+                    android:textColor="#FFB960"/>
+            </LinearLayout>
+
+            <!-- Divider -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="#455A64"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:text="OR"
+                    android:textColor="@color/DarkBlue"
+                    android:textSize="12sp"/>
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1"
+                    android:background="#455A64"/>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/continewWithGoogle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/with_google"
+                android:layout_marginTop="10dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:contentDescription="Continue with Google"/>
+
+
+
+            <!-- Terms -->
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="14dp"
+                android:text="By continuing you agree to our Terms &amp; Privacy Policy"
+                android:textSize="11sp"
+                android:textColor="@color/DarkBlue"
+                android:gravity="center"/>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:indeterminateTint="@color/DarkBlue"/>
+
+</RelativeLayout>
