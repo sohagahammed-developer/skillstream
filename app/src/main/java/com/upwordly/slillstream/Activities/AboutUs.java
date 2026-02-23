@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -154,10 +155,8 @@ public class AboutUs extends AppCompatActivity {
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
             Course course = courseList.get(position);
 
-            // এখানে আপনার UI এলিমেন্ট অনুযায়ী ডাটা সেট করুন
-            // উদাহরণস্বরূপ:
-            // holder.courseName.setText(course.getCourse_name());
-            // holder.coursePrice.setText(String.valueOf(course.getCourse_price()));
+            holder.coursePrice.setText("View Course");
+            holder.coursePrice.setBackgroundColor(getColor(R.color.gradient_end));
         }
 
         @Override
@@ -166,12 +165,12 @@ public class AboutUs extends AppCompatActivity {
         }
 
         class MyViewHolder extends RecyclerView.ViewHolder {
-            // TextView courseName, coursePrice;
+             TextView courseName, coursePrice;
 
             public MyViewHolder(@NonNull View itemView) {
                 super(itemView);
-                // courseName = itemView.findViewById(R.id.courseName);
-                // coursePrice = itemView.findViewById(R.id.coursePrice);
+                 courseName = itemView.findViewById(R.id.courseName);
+                 coursePrice = itemView.findViewById(R.id.coursePrice);
             }
         }
     }

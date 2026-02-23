@@ -31,7 +31,7 @@ import com.upwordly.slillstream.R;
 import java.util.HashMap;
 import java.util.Map;
 
-public class paymentActivity extends AppCompatActivity { // Class name convention capitalized
+public class paymentActivity extends AppCompatActivity {
 
     private TextView tvPhoneNumber, tvPrice;
     private ImageView btnCopy;
