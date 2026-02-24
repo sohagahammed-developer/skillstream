@@ -3,6 +3,8 @@ package com.upwordly.slillstream.Activities;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -22,6 +24,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
@@ -46,6 +49,11 @@ public class paymentActivity extends AppCompatActivity {
     private String nagadNumber = "";
     private String bankNumber = "";
 
+    String name = "";
+    String gender = "";
+    String dob = "";
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,16 +66,14 @@ public class paymentActivity extends AppCompatActivity {
             return insets;
         });
 
-        // Initialize Firebase
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
 
-        // Get Data from Intent
         int coursePrice = getIntent().getIntExtra("course_price", 0);
         int courseID = getIntent().getIntExtra("courseID", 0);
 
-        // Initialize Views
         initViews();
+        LoadDialog();
 
         tvPrice.setText("BDT : " + coursePrice);
 
@@ -173,6 +179,9 @@ public class paymentActivity extends AppCompatActivity {
 
     private void savePaymentData(String trxId, String uid, int courseID) {
         Map<String, Object> paymentData = new HashMap<>();
+        paymentData.put("name", name);
+        paymentData.put("gender", gender);
+        paymentData.put("dob", dob);
         paymentData.put("trxId", trxId);
         paymentData.put("uid", uid);
         paymentData.put("status", "processing");
@@ -184,10 +193,8 @@ public class paymentActivity extends AppCompatActivity {
                 .document(trxId)
                 .set(paymentData)
                 .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(this, "পেমেন্ট রিকোয়েস্ট সফল হয়েছে। এটি ভেরিফাই হতে কিছুক্ষণ সময় লাগতে পারে।", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(paymentActivity.this, AboutUs.class));
 
-                    // পেমেন্ট সফল হওয়ার পর ব্যাক করা
-                    finish();
                 })
                 .addOnFailureListener(e -> {
                     btnConfirm.setEnabled(true);
@@ -216,4 +223,56 @@ public class paymentActivity extends AppCompatActivity {
         float density = getResources().getDisplayMetrics().density;
         return Math.round((float) dp * density);
     }
+
+    void LoadDialog() {
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(paymentActivity.this);
+        builder.setTitle("Payment Details");
+
+        // একটি মেইন কন্টেইনার (LinearLayout) তৈরি করা
+        LinearLayout layout = new LinearLayout(paymentActivity.this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.setPadding(50, 40, 50, 10);
+
+        // ১. Name এর জন্য EditText
+        final EditText etName = new EditText(paymentActivity.this);
+        etName.setHint("Name");
+        layout.addView(etName);
+
+        // ২. Transaction ID এর জন্য EditText
+        final EditText etTrxId = new EditText(paymentActivity.this);
+        etTrxId.setHint("Gender");
+        layout.addView(etTrxId);
+
+        // ৩. Amount বা অন্য কিছুর জন্য EditText
+        final EditText etAmount = new EditText(paymentActivity.this);
+        etAmount.setHint("Date of birth");
+        layout.addView(etAmount);
+
+        // ডায়ালগে লেআউটটি সেট করা
+        builder.setView(layout);
+
+        // Confirm বাটন অ্যাড করা
+        builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String namee = etName.getText().toString();
+                String trxId = etTrxId.getText().toString();
+                String amount = etAmount.getText().toString();
+
+                if (name.isEmpty() || trxId.isEmpty() || amount.isEmpty()) {
+                    Toast.makeText(paymentActivity.this, "All fields are required", Toast.LENGTH_SHORT).show();
+                } else {
+                    name = namee;
+                    gender = trxId;
+                    dob = amount;
+                }
+            }
+        });
+        builder.setCancelable(false);
+        builder.setNegativeButton("Cancel", null);
+        builder.show();
+
+    }
+
+
 }

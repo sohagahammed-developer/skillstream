@@ -80,7 +80,7 @@ public class AboutUs extends AppCompatActivity {
 
         db.collection("payment")
                 .whereEqualTo("uid", currentUid)
-                .whereEqualTo("status", "verified")
+                .whereEqualTo("status", "processing")
                 .get()
                 .addOnSuccessListener(queryDocumentSnapshots -> {
                     List<Integer> verifiedIDs = new ArrayList<>();
@@ -157,6 +157,7 @@ public class AboutUs extends AppCompatActivity {
 
             holder.coursePrice.setText("View Course");
             holder.coursePrice.setBackgroundColor(getColor(R.color.gradient_end));
+
         }
 
         @Override
