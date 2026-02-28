@@ -1,11 +1,13 @@
 package com.upwordly.slillstream.Activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -87,6 +89,7 @@ public class AboutUs extends AppCompatActivity {
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                         Long cId = document.getLong("courseID");
                         if (cId != null) verifiedIDs.add(cId.intValue());
+                        Log.d("DEBUG_FIRESTORE", "courseID: " + cId);
                     }
                     filterAndShowCourses(verifiedIDs);
                 })
@@ -101,6 +104,7 @@ public class AboutUs extends AppCompatActivity {
         for (Course course : allCourses) {
             if (verifiedIDs.contains(course.getId())) {
                 verifiedCoursesToShow.add(course);
+                Log.d("DEBUG_JSON", "json id: " + course.getId());
             }
         }
 
@@ -154,9 +158,22 @@ public class AboutUs extends AppCompatActivity {
         @Override
         public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
             Course course = courseList.get(position);
+            holder.courseName.setText(course.getCourseName());
+            holder.courseStartDate.setText(course.getCourseStartDate());
+            int imageResId = getResources().getIdentifier(course.getImage(), "drawable", getPackageName());
+
+            holder.ImageView.setImageResource(imageResId);
 
             holder.coursePrice.setText("View Course");
             holder.coursePrice.setBackgroundColor(getColor(R.color.gradient_end));
+            holder.coursePrice.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(AboutUs.this, CourseDetails.class)
+                            .putExtra("courseID", course.getId()));
+
+                }
+            });
 
         }
 
@@ -166,12 +183,15 @@ public class AboutUs extends AppCompatActivity {
         }
 
         class MyViewHolder extends RecyclerView.ViewHolder {
-             TextView courseName, coursePrice;
+             TextView courseName, coursePrice,courseStartDate;
+             ImageView ImageView;
 
             public MyViewHolder(@NonNull View itemView) {
                 super(itemView);
-                 courseName = itemView.findViewById(R.id.courseName);
-                 coursePrice = itemView.findViewById(R.id.coursePrice);
+                 courseName = itemView.findViewById(R.id.title);
+                coursePrice = itemView.findViewById(R.id.coursePrice);
+                ImageView = itemView.findViewById(R.id.ImageView);
+                courseStartDate = itemView.findViewById(R.id.courseStartDate);
             }
         }
     }

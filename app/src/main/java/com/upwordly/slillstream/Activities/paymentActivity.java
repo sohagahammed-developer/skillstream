@@ -10,6 +10,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -94,6 +96,11 @@ public class paymentActivity extends AppCompatActivity {
         // Confirm Button Click
         btnConfirm.setOnClickListener(v -> {
             String trxId = etTrxId.getText().toString().trim();
+
+            if (name.isEmpty()){
+                Toast.makeText(this, "আগে পূরণ করুন", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
             if (selectedMethodType.isEmpty()) {
                 Toast.makeText(this, "আগে একটি পেমেন্ট মেথড সিলেক্ট করুন", Toast.LENGTH_SHORT).show();
@@ -228,49 +235,68 @@ public class paymentActivity extends AppCompatActivity {
         MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(paymentActivity.this);
         builder.setTitle("Payment Details");
 
-        // একটি মেইন কন্টেইনার (LinearLayout) তৈরি করা
         LinearLayout layout = new LinearLayout(paymentActivity.this);
         layout.setOrientation(LinearLayout.VERTICAL);
         layout.setPadding(50, 40, 50, 10);
 
-        // ১. Name এর জন্য EditText
         final EditText etName = new EditText(paymentActivity.this);
         etName.setHint("Name");
         layout.addView(etName);
 
-        // ২. Transaction ID এর জন্য EditText
-        final EditText etTrxId = new EditText(paymentActivity.this);
-        etTrxId.setHint("Gender");
-        layout.addView(etTrxId);
+        final EditText etGender = new EditText(paymentActivity.this);
+        etGender.setHint("Gender");
+        layout.addView(etGender);
 
-        // ৩. Amount বা অন্য কিছুর জন্য EditText
-        final EditText etAmount = new EditText(paymentActivity.this);
-        etAmount.setHint("Date of birth");
-        layout.addView(etAmount);
+        final EditText etDob = new EditText(paymentActivity.this);
+        etDob.setHint("Date of birth");
+        layout.addView(etDob);
 
-        // ডায়ালগে লেআউটটি সেট করা
         builder.setView(layout);
 
-        // Confirm বাটন অ্যাড করা
-        builder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String namee = etName.getText().toString();
-                String trxId = etTrxId.getText().toString();
-                String amount = etAmount.getText().toString();
-
-                if (name.isEmpty() || trxId.isEmpty() || amount.isEmpty()) {
-                    Toast.makeText(paymentActivity.this, "All fields are required", Toast.LENGTH_SHORT).show();
-                } else {
-                    name = namee;
-                    gender = trxId;
-                    dob = amount;
-                }
-            }
+        // ⚠️ এখানে null দিবা (important)
+        builder.setPositiveButton("Confirm", null);
+        builder.setNegativeButton("Cancel", (dialogInterface, i) -> {
+            getOnBackPressedDispatcher().onBackPressed();
         });
         builder.setCancelable(false);
-        builder.setNegativeButton("Cancel", null);
-        builder.show();
+
+        AlertDialog dialog = builder.create();
+
+        dialog.show();
+
+
+        // ✅ override button click
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
+
+            String namee = etName.getText().toString().trim();
+            String genderStr = etGender.getText().toString().trim();
+            String dobStr = etDob.getText().toString().trim();
+
+            boolean isValid = true;
+
+            if (namee.isEmpty()) {
+                etName.setError("আগে পূরণ করুন");
+                isValid = false;
+            }
+
+            if (genderStr.isEmpty()) {
+                etGender.setError("আগে পূরণ করুন");
+                isValid = false;
+            }
+
+            if (dobStr.isEmpty()) {
+                etDob.setError("আগে পূরণ করুন");
+                isValid = false;
+            }
+
+            // ✅ সব ঠিক হলে তবেই dismiss
+            if (isValid) {
+                name = namee;
+                gender = genderStr;
+                dob = dobStr;
+                dialog.dismiss();
+            }
+        });
 
     }
 
