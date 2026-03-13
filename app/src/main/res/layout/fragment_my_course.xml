@@ -7,7 +7,7 @@
     android:background="@drawable/backround_bg"
     android:layout_marginTop="-20dp"
     android:padding="10dp"
-    tools:context=".Fragment.MyCourseFragment">
+    tools:context=".Fragment.aboutUs">
 
     <ScrollView
         android:layout_width="0dp"
@@ -29,7 +29,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="About Skill Stream"
+                android:text="@string/about_skill_stream"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:textColor="@color/Text_Color"
@@ -48,7 +48,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text='"Skill Stream" is an app-based platform designed to streamline online learning through a personalized and automated approach. It offers features such as customizable learning paths, auto-generated study materials, real-time progress tracking, and course recommendations based on user preferences via intelligent algorithms.'
+                    android:text='@string/skill_stream_is_an_app_based_platform_designed_to_streamline_online_learning_through_a_personalized_and_automated_approach_it_offers_features_such_as_customizable_learning_paths_auto_generated_study_materials_real_time_progress_tracking_and_course_recommendations_based_on_user_preferences_via_intelligent_algorithms'
                     android:textSize="15sp"
                     android:textColor="@color/DarkBlue"
                     android:lineSpacingExtra="6dp"/>
@@ -57,7 +57,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text='These tools empower learners to efficiently achieve their educational goals. The platform also includes study schedule reminders, progress tracking with visual graphs and reports, and interactive quizzes to enhance the learning experience.'
+                    android:text='@string/these_tools_empower_learners_to_efficiently_achieve_their_educational_goals_the_platform_also_includes_study_schedule_reminders_progress_tracking_with_visual_graphs_and_reports_and_interactive_quizzes_to_enhance_the_learning_experience'
                     android:textSize="15sp"
                     android:textColor="@color/DarkBlue"
                     android:lineSpacingExtra="6dp"/>
@@ -66,7 +66,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text='Focused on accessibility and user-friendliness, "Skill Stream" provides a seamless and adaptable experience tailored to individual learning styles and needs.'
+                    android:text='@string/focused_on_accessibility_and_user_friendliness_skill_stream_provides_a_seamless_and_adaptable_experience_tailored_to_individual_learning_styles_and_needs'
                     android:textSize="15sp"
                     android:textColor="@color/DarkBlue"
                     android:lineSpacingExtra="6dp"/>
@@ -75,7 +75,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Technology Stack"
+                    android:text="@string/technology_stack"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@color/Text_Color"
@@ -85,7 +85,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
-                    android:text="• React.js for a responsive interface\n• Node.js for robust backend operations\n• MongoDB for scalable data management"
+                    android:text="@string/react_js_for_a_responsive_interface_n_node_js_for_robust_backend_operations_n_mongodb_for_scalable_data_management"
                     android:textSize="15sp"
                     android:textColor="@color/DarkBlue"
                     android:lineSpacingExtra="6dp"/>
@@ -94,7 +94,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Future Enhancements"
+                    android:text="@string/future_enhancements"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@color/Text_Color"
@@ -104,7 +104,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
-                    android:text="• Live tutoring sessions\n• Collaborative study groups\n• Dedicated mobile application"
+                    android:text="@string/live_tutoring_sessions_n_collaborative_study_groups_n_dedicated_mobile_application"
                     android:textSize="15sp"
                     android:textColor="@color/DarkBlue"
                     android:lineSpacingExtra="6dp"/>
@@ -115,7 +115,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Empowering Learning Through Technology"
+                android:text="@string/empowering_learning_through_technology"
                 android:textSize="13sp"
                 android:textStyle="italic"
                 android:textColor="@color/Text_Color"

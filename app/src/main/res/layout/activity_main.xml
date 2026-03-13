@@ -36,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="6dp"
-                android:text="Create Account"
+                android:text="@string/create_account"
                 android:textColor="#FFFFFF"
                 android:textSize="22sp"
                 android:padding="5dp"
@@ -45,7 +45,7 @@
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:text="Join us and start learning"
+                android:text="@string/join_us_and_start_learning"
                 android:textSize="14sp"
                 android:textColor="@color/DarkBlue"
                 android:layout_marginBottom="20dp"/>
@@ -57,7 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:hintTextColor="@color/DarkBlue"
-                android:hint="Full Name">
+                android:hint="@string/full_name">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_height="match_parent"
@@ -74,7 +74,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:hint="Email Address">
+                android:hint="@string/email_address">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_height="match_parent"
@@ -90,7 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
-                android:hint="Password"
+                android:hint="@string/password"
                 app:endIconMode="password_toggle">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -108,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_gravity="end"
-                android:text="Forgot password"
+                android:text="@string/forgot_password"
                 android:padding="8dp"
                 android:textStyle="bold"
                 android:textColor="#FFB960"/>
@@ -118,7 +118,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Create Account"
+                android:text="@string/create_account"
                 android:textStyle="bold"
                 android:textColor="#000000"
                 android:backgroundTint="#FFB960"/>
@@ -136,15 +136,14 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     android:padding="3dp"
-                    android:text="Already have an account ? "
+                    android:text="@string/already_have_an_account"
                     android:textColor="@color/DarkBlue"/>
 
                 <TextView
                     android:id="@+id/button_authentication"
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
-
-                    android:text="Login"
+                    android:text="@string/login"
                     android:padding="8dp"
                     android:textStyle="bold"
                     android:textColor="#FFB960"/>
@@ -168,7 +167,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
-                    android:text="OR"
+                    android:text="@string/or"
                     android:textColor="@color/DarkBlue"
                     android:textSize="12sp"/>
 
@@ -187,7 +186,7 @@
                 android:layout_marginTop="10dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:contentDescription="Continue with Google"/>
+                android:contentDescription="@string/continue_with_google"/>
 
 
 
@@ -196,7 +195,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:layout_marginTop="14dp"
-                android:text="By continuing you agree to our Terms &amp; Privacy Policy"
+                android:text="@string/by_continuing_you_agree_to_our_terms_amp_privacy_policy"
                 android:textSize="11sp"
                 android:textColor="@color/DarkBlue"
                 android:gravity="center"/>

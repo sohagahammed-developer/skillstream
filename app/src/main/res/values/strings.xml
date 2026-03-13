@@ -1,5 +1,26 @@
 <resources>
-    <string name="app_name">Skillstream</string>
 
+    <string name="app_name">Skillstream</string>
     <string name="ClientId">747398571654-ofseo8g4rlf3d2bn1o3l53c639mh02f1.apps.googleusercontent.com</string>
+    <string name="create_account">Create Account</string>
+    <string name="join_us_and_start_learning">Join us and start learning</string>
+    <string name="full_name">Full Name</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
+    <string name="forgot_password">Forgot password</string>
+    <string name="already_have_an_account">Already have an account ?</string>
+    <string name="login">Login</string>
+    <string name="or">OR</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="by_continuing_you_agree_to_our_terms_amp_privacy_policy"><![CDATA[By continuing you agree to our Terms & Privacy Policy]]></string>
+    <string name="about_skill_stream">About Skill Stream</string>
+    <string name="skill_stream_is_an_app_based_platform_designed_to_streamline_online_learning_through_a_personalized_and_automated_approach_it_offers_features_such_as_customizable_learning_paths_auto_generated_study_materials_real_time_progress_tracking_and_course_recommendations_based_on_user_preferences_via_intelligent_algorithms">Skill Stream is an app-based platform designed to streamline online learning through a personalized and automated approach. It offers features such as customizable learning paths, auto-generated study materials, real-time progress tracking, and course recommendations based on user preferences via intelligent algorithms.</string>
+    <string name="these_tools_empower_learners_to_efficiently_achieve_their_educational_goals_the_platform_also_includes_study_schedule_reminders_progress_tracking_with_visual_graphs_and_reports_and_interactive_quizzes_to_enhance_the_learning_experience">These tools empower learners to efficiently achieve their educational goals. The platform also includes study schedule reminders, progress tracking with visual graphs and reports, and interactive quizzes to enhance the learning experience.</string>
+    <string name="focused_on_accessibility_and_user_friendliness_skill_stream_provides_a_seamless_and_adaptable_experience_tailored_to_individual_learning_styles_and_needs">Focused on accessibility and user-friendliness, Skill Streamprovides a seamless and adaptable experience tailored to individual learning styles and needs.</string>
+    <string name="technology_stack">Technology Stack</string>
+    <string name="react_js_for_a_responsive_interface_n_node_js_for_robust_backend_operations_n_mongodb_for_scalable_data_management">• React.js for a responsive interface\n• Node.js for robust backend operations\n• MongoDB for scalable data management</string>
+    <string name="future_enhancements">Future Enhancements</string>
+    <string name="live_tutoring_sessions_n_collaborative_study_groups_n_dedicated_mobile_application">• Live tutoring sessions\n• Collaborative study groups\n• Dedicated mobile application</string>
+    <string name="empowering_learning_through_technology">Empowering Learning Through Technology</string>
+
 </resources>

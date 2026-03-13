@@ -22,7 +22,7 @@
             android:name=".Activities.paymentActivity"
             android:exported="false" />
         <activity
-            android:name=".Activities.AboutUs"
+            android:name=".Activities.Mycourse"
             android:exported="false" />
         <activity
             android:name=".Activities.CourseDetailsActivity"

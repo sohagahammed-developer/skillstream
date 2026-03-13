@@ -3,14 +3,12 @@ package com.upwordly.slillstream.Activities;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -172,7 +170,7 @@ public class paymentActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
                         if (document != null && document.exists()) {
-                            Toast.makeText(this, "এই Transaction ID টি ইতিমধ্যে ব্যবহার করা হয়েছে!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(this, "this Transaction ID already used ", Toast.LENGTH_LONG).show();
                             btnConfirm.setEnabled(true);
                         } else {
                             savePaymentData(trxId, auth.getUid(), courseID);
@@ -200,13 +198,13 @@ public class paymentActivity extends AppCompatActivity {
                 .document(trxId)
                 .set(paymentData)
                 .addOnSuccessListener(aVoid -> {
-                    startActivity(new Intent(paymentActivity.this, AboutUs.class));
+                    startActivity(new Intent(paymentActivity.this, Mycourse.class));
 
                 })
                 .addOnFailureListener(e -> {
                     btnConfirm.setEnabled(true);
                     Log.e("Firestore", "Save error: " + e.getMessage());
-                    Toast.makeText(this, "পেমেন্ট সেভ করতে সমস্যা হয়েছে। আবার চেষ্টা করুন।", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Save error", Toast.LENGTH_SHORT).show();
                 });
     }
 
@@ -220,7 +218,7 @@ public class paymentActivity extends AppCompatActivity {
                         nagadNumber = documentSnapshot.getString("nagadNumber");
                         bankNumber = documentSnapshot.getString("bankNumber");
                     } else {
-                        Toast.makeText(this, "পেমেন্ট সেটিংস পাওয়া যায়নি!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "Load error", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(e -> Log.e("Firestore", "Load error: " + e.getMessage()));
@@ -275,21 +273,21 @@ public class paymentActivity extends AppCompatActivity {
             boolean isValid = true;
 
             if (namee.isEmpty()) {
-                etName.setError("আগে পূরণ করুন");
+                etName.setError("Fill this field");
                 isValid = false;
             }
 
             if (genderStr.isEmpty()) {
-                etGender.setError("আগে পূরণ করুন");
+                etGender.setError("Fill this field");
                 isValid = false;
             }
 
             if (dobStr.isEmpty()) {
-                etDob.setError("আগে পূরণ করুন");
+                etDob.setError("Fill this field");
                 isValid = false;
             }
 
-            // ✅ সব ঠিক হলে তবেই dismiss
+            
             if (isValid) {
                 name = namee;
                 gender = genderStr;

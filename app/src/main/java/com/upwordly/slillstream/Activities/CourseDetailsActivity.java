@@ -2,20 +2,35 @@ package com.upwordly.slillstream.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.upwordly.slillstream.Adapters.Course;
 import com.upwordly.slillstream.R;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class CourseDetailsActivity extends AppCompatActivity {
 
@@ -24,7 +39,10 @@ public class CourseDetailsActivity extends AppCompatActivity {
     TextView title, name, date, price;
     LinearLayout techContainer, guidelineContainer;
     Button enrollBtn;
-
+    RatingBar user_rating;
+    FirebaseAuth auth;
+    FirebaseFirestore db;
+    Course course;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,8 +62,12 @@ public class CourseDetailsActivity extends AppCompatActivity {
         techContainer = findViewById(R.id.techContainer);
         guidelineContainer = findViewById(R.id.guidelineContainer);
         enrollBtn = findViewById(R.id.enrollBtn);
+        user_rating = findViewById(R.id.user_rating);
 
-        Course course = (Course) getIntent().getSerializableExtra("course_data");
+        db = FirebaseFirestore.getInstance();
+        auth = FirebaseAuth.getInstance();
+
+        course = (Course) getIntent().getSerializableExtra("course_data");
 
 
         if (course != null) {
@@ -90,5 +112,81 @@ public class CourseDetailsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        user_rating.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    showReviewDialog();
+                    return true;
+                }
+                return true;
+            }
+        });
+    }
+    public void showReviewDialog() {
+        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.review, null);
+        builder.setView(dialogView);
+
+        RatingBar ratingBar = dialogView.findViewById(R.id.ratingBar);
+        EditText editReview = dialogView.findViewById(R.id.editReview);
+        Button btnSubmit = dialogView.findViewById(R.id.btnSubmit);
+
+        AlertDialog dialog = builder.create();
+
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        }
+
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                float rating = ratingBar.getRating();
+                String reviewText = editReview.getText().toString().trim();
+                String userId = auth.getUid();
+
+                if (userId == null) {
+                    Toast.makeText(CourseDetailsActivity.this, "Please Login First", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (rating == 0) {
+                    Toast.makeText(CourseDetailsActivity.this, "Please select at least 1 star", Toast.LENGTH_SHORT).show();
+                } else if (reviewText.isEmpty()) {
+                    Toast.makeText(CourseDetailsActivity.this, "Please write a comment", Toast.LENGTH_SHORT).show();
+                } else {
+
+                    // DATA PREPARATION
+                    Map<String, Object> reviewData = new HashMap<>();
+                    reviewData.put("rating", rating);
+                    reviewData.put("comment", reviewText);
+                    reviewData.put("userId", userId);
+                    reviewData.put("courseId", course.getId());
+                    reviewData.put("timestamp", System.currentTimeMillis());
+
+                    // UNIQUE ID: This prevents multiple reviews for the SAME course by the SAME user
+                    String uniqueDocId = userId + "_" + course.getId();
+
+                    db.collection("Reviews").document(uniqueDocId)
+                            .set(reviewData)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void unused) {
+                                    Toast.makeText(CourseDetailsActivity.this, "Review submitted successfully!", Toast.LENGTH_SHORT).show();
+                                    dialog.dismiss();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(CourseDetailsActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                }
+            }
+        });
+
+        dialog.show();
     }
 }

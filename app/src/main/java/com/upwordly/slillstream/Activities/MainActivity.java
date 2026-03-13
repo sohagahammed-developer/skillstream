@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -188,15 +189,12 @@ public class MainActivity extends AppCompatActivity {
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
                         if (user != null) {
-
-                            // Save name
                             UserProfileChangeRequest profileUpdates =
                                     new UserProfileChangeRequest.Builder()
                                             .setDisplayName(name)
                                             .build();
                             user.updateProfile(profileUpdates);
 
-                            // Send verification email
                             user.sendEmailVerification()
                                     .addOnSuccessListener(unused -> {
                                         Toast.makeText(
@@ -239,7 +237,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         progressBar.setVisibility(View.VISIBLE);
-
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     progressBar.setVisibility(View.GONE);
@@ -268,7 +265,6 @@ public class MainActivity extends AppCompatActivity {
     private void requestGoogleLogin () {
 
         progressBar.setVisibility(View.VISIBLE);
-
         manager.getCredentialAsync(this, request, null, Runnable::run,
                 new CredentialManagerCallback<GetCredentialResponse, GetCredentialException>() {
                     @Override
@@ -352,9 +348,9 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
+
     public void _TransitionManager(final View _view, final double _duration) {
         LinearLayout viewgroup = (LinearLayout) _view;
-
         android.transition.AutoTransition autoTransition = new android.transition.AutoTransition();
         autoTransition.setDuration((long) _duration);
         android.transition.TransitionManager.beginDelayedTransition(viewgroup, autoTransition);

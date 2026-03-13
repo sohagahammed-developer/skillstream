@@ -92,6 +92,7 @@
                     android:background="@drawable/btn_gradient"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold"
+                    android:visibility="visible"
                     android:layout_marginTop="16dp" />
 
             </LinearLayout>
@@ -136,7 +137,25 @@
                 android:background="@drawable/card_bg"
                 android:padding="12dp" />
 
+            <RatingBar
+                android:id="@+id/user_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:stepSize="1.0"
+                android:layout_gravity="center"
+                android:rating="0"
+                android:progressTint="#FFD700"
+                android:secondaryProgressTint="#FFD700"/>
+
+
         </LinearLayout>
+
+
+
+
+
+
     </ScrollView>
 
 </RelativeLayout>

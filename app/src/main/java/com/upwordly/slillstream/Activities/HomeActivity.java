@@ -20,11 +20,10 @@ import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
-import com.upwordly.slillstream.Adapters.CourseAdapter;
 import com.upwordly.slillstream.Fragment.ContuctFtagment;
 import com.upwordly.slillstream.Fragment.CourseFragment;
 import com.upwordly.slillstream.Fragment.HomeFragment;
-import com.upwordly.slillstream.Fragment.MyCourseFragment;
+import com.upwordly.slillstream.Fragment.aboutUs;
 import com.upwordly.slillstream.R;
 
 public class HomeActivity extends AppCompatActivity {
@@ -46,6 +45,7 @@ public class HomeActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar);
         loadFragment(new HomeFragment());
         mAuth = FirebaseAuth.getInstance();
+
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -58,7 +58,7 @@ public class HomeActivity extends AppCompatActivity {
                     loadFragment(new CourseFragment());
                 }else if (menuItem.getItemId() == R.id.menu_my_course)
                 {
-                    loadFragment(new MyCourseFragment());
+                    loadFragment(new aboutUs());
                 }else if (menuItem.getItemId() == R.id.menu_contact)
                 {
                     loadFragment(new ContuctFtagment());
@@ -80,7 +80,7 @@ public class HomeActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
 
                 if (item.getItemId() == R.id.aboutUs) {
-                    loadFragment(new MyCourseFragment());
+                    loadFragment(new aboutUs());
                     selectBottomNavItem(R.id.menu_my_course);
 
                 }
@@ -90,7 +90,7 @@ public class HomeActivity extends AppCompatActivity {
 
                 }
                 else if (item.getItemId() == R.id.menu_my_course) {
-                    startActivity(new Intent(HomeActivity.this, AboutUs.class));
+                    startActivity(new Intent(HomeActivity.this, Mycourse.class));
 
                 }
                 else if (item.getItemId() == R.id.menu_contact) {

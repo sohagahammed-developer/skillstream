@@ -3,6 +3,7 @@ package com.upwordly.slillstream.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -32,12 +33,16 @@ public class HomeFragment extends Fragment {
     CourseAdapter adapter;
     ArrayList<SlideModel> slideModels = new ArrayList<>();
     ArrayList<Course> courseList = new ArrayList<>();
+    SearchView courseSearch;
+
+    private List<Course> courseListFull;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         image_slider = view.findViewById(R.id.image_slider);
         recyclerView = view.findViewById(R.id.recyclerView);
+        courseSearch = view.findViewById(R.id.courseSearch);
 
 
         slideModels.add(new SlideModel(R.drawable.img_1,ScaleTypes.CENTER_CROP));
@@ -48,8 +53,27 @@ public class HomeFragment extends Fragment {
         image_slider.setImageList(slideModels, ScaleTypes.CENTER_CROP);
 
 
-        new Thread(() -> {
+//        new Thread(() -> {
+//
+//            String json = loadJSONFromAsset(requireContext(), "course.json");
+//
+//            if (json != null) {
+//                Gson gson = new Gson();
+//                CourseResponse response = gson.fromJson(json, CourseResponse.class);
+//
+//                if (response != null && response.getCourses() != null) {
+//                    courseList.clear();
+//                    courseList.addAll(response.getCourses());
+//                }
+//            }
+//
+//            requireActivity().runOnUiThread(() -> {
+//                adapter.notifyDataSetChanged();
+//            });
+//
+//        }).start();
 
+        new Thread(() -> {
             String json = loadJSONFromAsset(requireContext(), "course.json");
 
             if (json != null) {
@@ -57,15 +81,16 @@ public class HomeFragment extends Fragment {
                 CourseResponse response = gson.fromJson(json, CourseResponse.class);
 
                 if (response != null && response.getCourses() != null) {
-                    courseList.clear();
-                    courseList.addAll(response.getCourses());
+                    List<Course> fetchedCourses = response.getCourses();
+
+                    // UI আপডেট সবসময় runOnUiThread এর ভেতর হবে
+                    requireActivity().runOnUiThread(() -> {
+                        // সরাসরি অ্যাডাপ্টারের updateList মেথড কল করুন
+                        // এটি আপনার arrayList এবং arrayListFull দুইটাই আপডেট করে দেবে
+                        adapter.updateList(fetchedCourses);
+                    });
                 }
             }
-
-            requireActivity().runOnUiThread(() -> {
-                adapter.notifyDataSetChanged();
-            });
-
         }).start();
 
 
@@ -73,7 +98,21 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         recyclerView.setAdapter(adapter);
 
+        courseSearch.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
 
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                // Call the filter method from your CourseAdapter
+                if (adapter != null) {
+                    adapter.filter(newText);
+                }
+                return true;
+            }
+        });
 
         return view;
     }

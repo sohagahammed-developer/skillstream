@@ -22,16 +22,19 @@ import com.upwordly.slillstream.Activities.paymentActivity;
 import com.upwordly.slillstream.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseViewholder> {
 
     Context context;
     ArrayList<Course> arrayList;
+    ArrayList<Course> arrayListFull;
 
     // Constructor
-    public CourseAdapter(Context context, ArrayList<Course> arrayList){
+    public CourseAdapter(Context context, ArrayList<Course> arrayList) {
         this.context = context;
         this.arrayList = arrayList;
+        this.arrayListFull = new ArrayList<>(arrayList);
     }
 
     // Inflate item layout
@@ -40,6 +43,30 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
     public CourseViewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.course_item, parent, false);
         return new CourseViewholder(view);
+    }
+
+    public void filter(String text) {
+        arrayList.clear();
+        if (text.isEmpty()) {
+            arrayList.addAll(arrayListFull);
+        } else {
+            text = text.toLowerCase();
+            for (Course item : arrayListFull) {
+                if (item.getCourseTitle().toLowerCase().contains(text) ||
+                        item.getCourseName().toLowerCase().contains(text)) {
+                    arrayList.add(item);
+                }
+            }
+        }
+        notifyDataSetChanged();
+    }
+
+    // Call this when data is loaded from JSON to refresh the search copy
+    public void updateList(List<Course> newList) {
+        this.arrayListFull = new ArrayList<>(newList);
+        this.arrayList.clear();
+        this.arrayList.addAll(newList);
+        notifyDataSetChanged();
     }
 
     // Bind data
@@ -73,8 +100,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
         });
 
 
-
-
     }
 
     @Override
@@ -84,7 +109,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseView
 
     // ViewHolder
     public static class CourseViewholder extends RecyclerView.ViewHolder {
-        TextView  title, price, startDate;
+        TextView title, price, startDate;
         ImageView imageView;
 
         public CourseViewholder(@NonNull View itemView) {
