@@ -2,59 +2,59 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:background="@drawable/btn_gradient"
-    android:padding="24dp"
-    >
+    android:orientation="vertical"
+    android:padding="24dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="8dp"
         android:text="Rate Your Experience"
-        android:textSize="20sp"
-        android:textStyle="bold"
         android:textColor="#212121"
-        android:layout_gravity="center"
-        android:layout_marginBottom="8dp"/>
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="How many stars would you give us?"
-        android:textSize="14sp"
-        android:textColor="#757575"
         android:layout_gravity="center"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp"
+        android:text="How many stars would you give us?"
+        android:textColor="#757575"
+        android:textSize="14sp" />
 
     <RatingBar
         android:id="@+id/ratingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:numStars="5"
-        android:stepSize="1.0"
         android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:numStars="5"
         android:progressTint="#FFD700"
-        android:layout_marginBottom="20dp"/>
+        android:stepSize="1.0" />
 
     <EditText
         android:id="@+id/editReview"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:hint="Write your feedback here..."
-        android:gravity="top"
-        android:padding="12dp"
         android:background="@android:drawable/edit_text"
+        android:gravity="top"
+        android:hint="Write your feedback here..."
         android:inputType="textMultiLine"
-        android:textSize="14sp"/>
+        android:padding="12dp"
+        android:textColor="@color/DarkBlue"
+        android:textSize="14sp" />
 
     <Button
         android:id="@+id/btnSubmit"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:text="Submit Review"
         android:layout_marginTop="24dp"
         android:backgroundTint="#2196F3"
+        android:text="Submit Review"
         android:textColor="#FFFFFF"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
 </LinearLayout>

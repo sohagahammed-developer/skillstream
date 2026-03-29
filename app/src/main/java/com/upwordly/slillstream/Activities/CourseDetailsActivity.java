@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -15,21 +16,31 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.upwordly.slillstream.Adapters.Course;
 import com.upwordly.slillstream.R;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CourseDetailsActivity extends AppCompatActivity {
@@ -39,10 +50,12 @@ public class CourseDetailsActivity extends AppCompatActivity {
     TextView title, name, date, price;
     LinearLayout techContainer, guidelineContainer;
     Button enrollBtn;
-    RatingBar user_rating;
     FirebaseAuth auth;
     FirebaseFirestore db;
     Course course;
+    RecyclerView courseReview;
+    ReviewAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +75,10 @@ public class CourseDetailsActivity extends AppCompatActivity {
         techContainer = findViewById(R.id.techContainer);
         guidelineContainer = findViewById(R.id.guidelineContainer);
         enrollBtn = findViewById(R.id.enrollBtn);
-        user_rating = findViewById(R.id.user_rating);
+        courseReview = findViewById(R.id.courseReview);
+        courseReview.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new ReviewAdapter();
+        courseReview.setAdapter(adapter);
 
         db = FirebaseFirestore.getInstance();
         auth = FirebaseAuth.getInstance();
@@ -112,81 +128,82 @@ public class CourseDetailsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        user_rating.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-                    showReviewDialog();
-                    return true;
-                }
-                return true;
-            }
-        });
+        loadReviews(course.getId());
+
     }
-    public void showReviewDialog() {
-        MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
-        LayoutInflater inflater = getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.review, null);
-        builder.setView(dialogView);
 
-        RatingBar ratingBar = dialogView.findViewById(R.id.ratingBar);
-        EditText editReview = dialogView.findViewById(R.id.editReview);
-        Button btnSubmit = dialogView.findViewById(R.id.btnSubmit);
+    private void loadReviews(int courseId) {
+        db.collection("Reviews")
+                .whereEqualTo("courseId", courseId)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if (error != null) {
+                            Toast.makeText(CourseDetailsActivity.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        List<Map<String, Object>> reviewList = new ArrayList<>();
 
-        AlertDialog dialog = builder.create();
+                        if (value != null) {
+                            for (DocumentSnapshot doc : value.getDocuments()) {
+                                Map<String, Object> data = doc.getData();
+                                if (data != null) {
+                                    reviewList.add(data);
+                                }
+                            }
+                            adapter.setReviews(reviewList);
 
-        if (dialog.getWindow() != null) {
-            dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+                        }
+                    }
+                });
+    }
+
+    public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ReviewHolder> {
+        private List<Map<String, Object>> reviewList = new ArrayList<>();
+
+        // নতুন ডেটা সেট করার জন্য মেথড
+        public void setReviews(List<Map<String, Object>> list) {
+            this.reviewList = list;
+            notifyDataSetChanged();
         }
 
-        btnSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                float rating = ratingBar.getRating();
-                String reviewText = editReview.getText().toString().trim();
-                String userId = auth.getUid();
+        @NonNull
+        @Override
+        public ReviewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            // এখানে আপনার রিভিউ আইটেম লেআউট (R.layout.item_review) ইনফ্লেট করুন
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_review, parent, false);
+            return new ReviewHolder(view);
+        }
 
-                if (userId == null) {
-                    Toast.makeText(CourseDetailsActivity.this, "Please Login First", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+        @Override
+        public void onBindViewHolder(@NonNull ReviewHolder holder, int position) {
+            Map<String, Object> data = reviewList.get(position);
 
-                if (rating == 0) {
-                    Toast.makeText(CourseDetailsActivity.this, "Please select at least 1 star", Toast.LENGTH_SHORT).show();
-                } else if (reviewText.isEmpty()) {
-                    Toast.makeText(CourseDetailsActivity.this, "Please write a comment", Toast.LENGTH_SHORT).show();
-                } else {
+            // Map থেকে ডাটা বের করা
+            String comment = String.valueOf(data.get("comment"));
+            // Firestore থেকে আসা নম্বরগুলো সাধারণত Double বা Long হয়, তাই ফ্লোটে কনভার্ট করা
+            float rating = Float.parseFloat(String.valueOf(data.get("rating")));
 
-                    // DATA PREPARATION
-                    Map<String, Object> reviewData = new HashMap<>();
-                    reviewData.put("rating", rating);
-                    reviewData.put("comment", reviewText);
-                    reviewData.put("userId", userId);
-                    reviewData.put("courseId", course.getId());
-                    reviewData.put("timestamp", System.currentTimeMillis());
+            holder.commentText.setText(comment);
+            holder.ratingBar.setRating(rating);
+        }
 
-                    // UNIQUE ID: This prevents multiple reviews for the SAME course by the SAME user
-                    String uniqueDocId = userId + "_" + course.getId();
+        @Override
+        public int getItemCount() {
+            return reviewList.size();
+        }
 
-                    db.collection("Reviews").document(uniqueDocId)
-                            .set(reviewData)
-                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                @Override
-                                public void onSuccess(Void unused) {
-                                    Toast.makeText(CourseDetailsActivity.this, "Review submitted successfully!", Toast.LENGTH_SHORT).show();
-                                    dialog.dismiss();
-                                }
-                            })
-                            .addOnFailureListener(new OnFailureListener() {
-                                @Override
-                                public void onFailure(@NonNull Exception e) {
-                                    Toast.makeText(CourseDetailsActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                }
+        public class ReviewHolder extends RecyclerView.ViewHolder {
+            TextView commentText;
+            RatingBar ratingBar;
+
+            public ReviewHolder(@NonNull View itemView) {
+                super(itemView);
+                // আপনার item_review.xml এর আইডি অনুযায়ী সেট করুন
+                commentText = itemView.findViewById(R.id.rev_comment);
+                ratingBar = itemView.findViewById(R.id.rev_rating);
             }
-        });
-
-        dialog.show();
+        }
     }
+
 }
